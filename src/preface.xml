@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE preface>
+
+<preface    xml:id="preface"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>前言</title>
+
+<sect1 xml:id="purpose"><title>本文目的</title>
+    <para>本文目的在于，详细解释什么是Cygwin，如何使用Cygwin</para>
+    <para>以实现，对于Cygwin不了解的人，看了后，可以达到：</para>
+    <para>知道什么是Cygwin</para>
+    <para>在具体如何安装和使用时，都有合适的参考资料</para>
+</sect1>
+
+<sect1 xml:id="todo"><title>待完成</title>
+    <itemizedlist>
+        <listitem>x86和x64的Cygwin
+            <para>对于Cygwin的新划分除了的x86和x64，抽空去研究搞懂，除了本身x86和x64的区别之外，细节上有何其他区别。</para>
+            <para></para>
+            <para></para>
+        </listitem>
+        <listitem>163的源，现在也分x86和x64了
+            <para>所以之前介绍的，添加：http://mirrors.163.com/cygwin/的方法，也是错的了</para>
+            <para>需要同步去更新。</para>
+            <para>对应章节：<xref linkend="tip.input_163_mirror_url" /></para>
+        </listitem>
+        <listitem>举例说明Cygwin的各种用途中更多的例子
+            <para></para>
+            <para></para>
+            <para></para>
+        </listitem>
+        <listitem>把之前cygwin安装单个模块的内容整理过来
+            <para>之前折腾cygwin中把make从3.82换成3.81的过程，整理过来</para>
+            <para><link xl:href="http://www.crifan.com/cygwin_change_make_from_3_82_to_old_3_81/">【记录】Cygwin下把make从v3.82换成v3.81</link></para>
+            <para><link xl:href="http://www.crifan.com/summary_cygwin_usage_tricks/">【整理】Cygwin使用心得和使用技巧</link></para>
+            <para></para>
+        </listitem>
+
+    </itemizedlist>
+</sect1>
+
+</preface>

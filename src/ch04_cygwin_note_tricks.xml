@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter    xml:id="cygwin_note_tricks"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>Cygwin使用心得和技巧总结</title>
+<para></para>
+<para></para>
+
+<sect1 xml:id="cygwin_utilities"><title>和Cygwin自身相关的一些工具</title>
+    <para>此处主要指的是和Cygwin本身有关的一些工具。</para>
+    <para>关于Cygwin的工具，其实cygwin官网中已有详细介绍了：<link xl:href="http://cygwin.com/cygwin-ug-net/using-utils.html">Cygwin Utilities</link>，此处只是简单解释一下，以及提醒一些注意事项：</para>
+    
+    <sect2 xml:id="cygcheck"><title>cygcheck</title>
+        <para>作用：用于检测，校验cygwin。</para>
+        <para>如果cygwin本身的运行有问题了，比如缺少了某库，导致程序无法运行，则可以使用此工具，去检测到底问题出在哪里。</para>
+        <para>比如：<link xl:href="http://www.crifan.com/cygwin_run_app_error_while_loading_shared_libraries_cannot_open_shared_object_file_no_such_file_or_directory/">【基本解决】Cygwin中运行程序出现错误：error while loading shared libraries: ?: cannot open shared object file: No such file or directory</link></para>
+    </sect2>
+    
+    <sect2 xml:id="cygpath"><title>cygpath</title>
+        <para>作用：实现Linux/Unix和Windows之间的路径转换。</para>
+        <para>其中，主要包含了Windows路径中反斜杠和Linux路径中的斜杠之间的转换，已经Windows下面的环境变量和Linux下面的环境变量的处理。</para>
+        <para>而环境变量中，又包含，多个值所用分隔符的不同，Windows是分号，Linux是冒号。</para>
+        <para>不过好像当Linux和Windows的环境变量混用，有时候，会出现一些bug，比如</para>
+        <para><link xl:href="http://www.crifan.com/fop_java_lang_noclassdeffounderror_xmlgraphics_cygpath_bug_path_truncated/">【终极解决】fop错误：Exception in thread "main" java.lang.NoClassDefFoundError:org/apache/xmlgraphics/image/loader/ImageContext 的终极解决办法，即cygpath有bug，转换路径出错，导致部分路径被截断</link></para>
+    </sect2>
+</sect1>
+
+<sect1 xml:id="cygwin_notes"><title>Cygwin中使用注意事项</title>
+    <para>Cygwin的使用过程中，也有很多注意事项，现总结如下；</para>
+    <para></para>
+    <sect2 xml:id="path_contain_special_char"><title>Cygwin的环境变量等路径中可能包含空格，括号等特殊字符而导致出错</title>
+        <para>Linux的环境中，路径中，是不允许包含空格的</para>
+        <para>Windows的环境中是运行的</para>
+        <para>所以，在使用Cygwin期间，常常会遇到：</para>
+        <para>PATH等环境变量，由于即包含了Windows中的很多路径</para>
+        <para>又包含了Cygwin（即Linux）中的很多路径</para>
+        <para>但是程序，脚本等处理这些路径时，有些没考虑到这种带路径的情况</para>
+        <para>而导致出现各种问题。</para>
+        <para>比如，我之前就遇到一个：</para>
+        <para><link xl:href="http://www.crifan.com/cygwin_buildroot_xscale_make_bin_sh_c_line_0_syntax_error_near_unexpected_token_left_parenthesis/">【已解决】Cygwin下为xscale编译Buildroot时make出错：/bin/sh: -c: line 0: syntax error near unexpected token `(‘</link></para>
+        <para>所以，以后使用时，在这方面，要小心。</para>
+        <para>以及出现类似问题，要想到，或许可能是Cygwin路径中包含空格，括号等特殊字符而导致的</para>
+        <para></para>
+    </sect2>
+</sect1>
+
+<sect1 xml:id="cygwin_tricks"><title>Cygwin使用技巧总结</title>
+    <para>下面介绍一些Cygwin中相关的小技巧：</para>
+    <sect2 xml:id="right_menu_run_cygwin"><title>Windows下，添加右键打开Cygwin</title>
+        <para>打开注册表（regedit）并定位到</para>
+        <para><filename>HKEY_CLASSES_ROOT\Directory\shell</filename></para>
+        <note xml:id="note.regedit"><title>关于注册表regedit</title>
+            <para>不熟悉windows注册表regedit的，请去看</para>
+            <para><link xl:href="http://www.crifan.com/files/doc/docbook/soft_dev_basic/release/htmls/windows.html#win_regedit">Windows的注册表编辑器: regedit</link></para>
+        </note>
+        <para>然后右击shell->新建->项，然后名字随便起，比如<filename>RunCygwin</filename></para>
+        <para>在其下再新建一项,叫做command,表示要执行的命令,command下会有一个图标是ab字样的键值，名称是(默认)，类型是REG_SZ，</para>
+        <para>双击其会弹出一个"修改字符串"的窗口,修改数据数值为:</para>
+        <screen>D:\tmp\tmp_dev_root\cgwin\bin\bash -login -c "cd '%1'; exec bash -rcfile ~/.bashrc"</screen>
+        <para>其中</para>
+        <para><filename class="directory">D:\tmp\tmp_dev_root\cgwin\</filename></para>
+        <para>是我此处Cygwin安装路径下的bash的位置，其下会存在bash工具：<filename>bin\bash</filename></para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject role="html"><imagedata fileref="images/right_menu/runcygwin command.png" align="left"   scalefit="0" width="100%" /></imageobject>
+                <imageobject role="fo">  <imagedata fileref="images/right_menu/runcygwin command.png" align="center" scalefit="1" width="100%"/></imageobject>
+            </mediaobject>
+        </informalfigure>
+        <para>然后就可以进入任何目录,右键点击,就会看到对应的可选项,此处是<filename>RunCygwin</filename>：</para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject role="html"><imagedata fileref="images/right_menu/right_click_runcygwin.png" align="left"   scalefit="0" width="100%" /></imageobject>
+                <imageobject role="fo">  <imagedata fileref="images/right_menu/right_click_runcygwin.png" align="center" scalefit="1" width="100%"/></imageobject>
+            </mediaobject>
+        </informalfigure>
+        <para>点击即可进入cygwin了：</para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject role="html"><imagedata fileref="images/right_menu/cygwin_run.png" align="left"   scalefit="0" width="100%" /></imageobject>
+                <imageobject role="fo">  <imagedata fileref="images/right_menu/cygwin_run.png" align="center" scalefit="1" width="100%"/></imageobject>
+            </mediaobject>
+        </informalfigure>
+        <para>关于更多的相关的解释，请参考：<link xl:href="http://www.crifan.com/finishing_in_the_windows_makes_it_possible_to_add_the_right_to_run_cygwin_and_navigate_directly_to_the_current_folder__finishing_in_windows_xp_right-add_command_line_cmd_command_open_the_current_folde/">【整理】在windows下添加右键使得可以运行cygwin且直接定位到当前文件夹 + 【整理】如何在Windows XP中，右键添加命令行cmd command，打开当前文件夹，定位到当前路径</link></para>
+    </sect2>
+    
+    <sect2 xml:id="change_def_cygwin_path"><title>修改Cygwin的默认启动路径</title>
+        <para>原先启动Cygwin，其默认路径是当前用户的Home文件夹：</para>
+        <screen>
+CLi@PC-CLI-1 ~
+$ pwd
+/home/CLi
+        </screen>
+        <para>而Cygwin默认启动路径，就是由环境变量HOME的值决定的。</para>
+        <para>因此，此处就是要去改变对应的环境变量HOME的值。</para>
+        <para></para>
+        <para>此处，先去看看原先HOME的值是多少，有两种方法：</para>
+        <itemizedlist>
+            <listitem>
+                <para>可以在cygwin下输入env查看当前所有的环境变量：</para>
+                <screen>
+CLi@PC-CLI-1 ~
+$ env
+HOMEPATH=\Users\CLi
+...
+SHELL=/bin/bash
+TERM=xterm
+...
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+OS=Windows_NT
+...
+HOME=/home/CLi
+...
+                </screen>
+                <para>其中就可以看到，此处的HOME值为/home/CLi</para>
+            </listitem>
+            <listitem>
+                <para>直接通过echo一个环境变量，得知该环境变量的值：</para>
+                <screen>
+CLi@PC-CLI-1 ~
+$ echo $HOME
+/home/CLi
+                </screen>
+            </listitem>
+        </itemizedlist>
+        <para>而想要改变HOME的值，也有两种方法：</para>
+        <itemizedlist>
+            <listitem>
+                <para>去windows中建立一个HOME的环境变量，将值设置为自己想要的值</para>
+                <para>而关于如何添加Windows的环境变量，不熟悉的人，请参考</para>
+                <para><link xl:href="http://www.crifan.com/files/doc/docbook/soft_dev_basic/release/htmls/env_var.html#add_new_win_env_var">windows中新建一个环境变量</link></para>
+            </listitem>
+            <listitem>
+                <para>通过export去修改环境变量：</para>
+                <screen>
+CLi@PC-CLI-1 ~
+$ echo $HOME
+/home/CLi
+
+CLi@PC-CLI-1 ~
+$ export HOME=/home/CLi/develop
+
+CLi@PC-CLI-1 /home/CLi
+$ echo $HOME
+/home/CLi/develop
+                </screen>
+                <para>即可把HOME从/home/CLi改为/home/CLi/develop</para>
+                <note>此处通过export的方式改变的值，只是当前（会话/窗口）有效，关闭了窗口后，就失效了，所以下次重启后，还是无法达到修改的效果</note>
+            </listitem>
+        </itemizedlist>
+    </sect2>
+        
+    <sect2 xml:id="change_cygwin_to_other_drive"><title>切换当前路径到别的磁盘，比如C盘，D盘等</title>
+        <para>Cygwin下，从当前路径切换到Windows中别的磁盘，比如C盘，之前的做法，是通过cygdrive：</para>
+        <screen>
+CLi@PC-CLI-1 /cygdrive/c
+$ pwd
+/cygdrive/c
+
+CLi@PC-CLI-1 /cygdrive/c
+$ cd /cygdrive/d
+
+CLi@PC-CLI-1 /cygdrive/d
+$ pwd
+/cygdrive/d
+        </screen>
+        <para>现在刚看到<xref linkend="ref.cygwin_env" />，才知道也可以直接通过C:的形式去切换到C盘了：</para>
+        <screen>
+CLi@PC-CLI-1 /home/CLi
+$ pwd
+/home/CLi
+
+CLi@PC-CLI-1 /home/CLi
+$ cd C:
+
+CLi@PC-CLI-1 /cygdrive/c
+$ pwd
+/cygdrive/c
+        </screen>
+    </sect2>
+
+</sect1>
+
+</chapter>

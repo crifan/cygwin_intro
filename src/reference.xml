@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<bibliography
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    
+    xml:id="reference">
+
+<bibliomixed xml:id="ref.cygwin_env">
+  <bibliosource><link xl:href="http://hi.baidu.com/%CE%DE%CA%AB%CE%C4/blog/item/099c1766c27fd822ab184cb5.html">Cygwin中环境变量的配置</link></bibliosource>
+  <author>无诗文</author>
+</bibliomixed>
+
+<bibliomixed xml:id="ref.cygwin_crosstool_ng_arm">
+  <bibliosource><link xl:href="http://www.crifan.com/cygwin_use_crosstool_ng_build_cross_compiler_for_arm/">【记录】Cygwin下用crosstool-ng为arm制作交叉编译器</link></bibliosource>
+  <author>Crifan Li</author>
+</bibliomixed>
+
+
+</bibliography>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE book
+[
+
+<!ENTITY cur_book_name      "cygwin_intro" >
+<!ENTITY publish_date       "2013-09-04" >
+<!ENTITY release_version    "1.0" >
+
+<!ENTITY copyrith_year "2013" >
+<!ENTITY entity_common_multi_format     SYSTEM  "../../entity_common_multi_format.xml">
+<!ENTITY entity_common_publish_info     SYSTEM  "../../entity_common_publish_info.xml">
+]>
+
+<book version="5.0"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    
+    xml:lang="zh_CN">
+
+<info>
+    <title>Cygwin详解</title>
+    <subtitle></subtitle>
+    <keywordset>
+        <keyword>Cygwin</keyword>
+        <keyword>详解</keyword>
+        <keyword>下载Cygwin</keyword>
+        <keyword>安装Cygwin</keyword>
+        <keyword>Cygwin心得</keyword>
+    </keywordset>
+
+    <abstract>
+        <para>本文主要介绍了什么是Cygwin，如何安装Cygwin，使用Cygwin时的一些常见问题总结，总结Cygwin的使用技巧和心得，其他和Cygwin相关的东西</para>
+        &entity_common_multi_format;
+    </abstract>
+
+    <revhistory>
+        <revision>
+            <revnumber>&release_version;</revnumber>
+            <date>&publish_date;</date>
+            <revremark>
+                <orderedlist>
+                    <listitem>将原先部分内容从软件开发基础知识(soft_dev_basic)中整理过来</listitem>
+                    <listitem>添加后来对于Cygwin的一些折腾，主要是如何重新安装Cygwin的某个软件包，如何选择合适的安装源</listitem>
+                    <listitem>整理一些和Cygwin相关的东西，比如crosstool-ng等</listitem>
+                </orderedlist>
+            </revremark>
+            <authorinitials>crl</authorinitials>
+        </revision>
+    </revhistory>
+
+    &entity_common_publish_info;
+</info>
+
+<xi:include href="preface.xml" />
+<xi:include href="ch01_intro_cygwin.xml" />
+<xi:include href="ch02_download_install_cygwin.xml" />
+<xi:include href="ch03_cygwin_modules.xml" />
+<xi:include href="ch04_cygwin_note_tricks.xml" />
+<xi:include href="ch05_cygwin_common_errors.xml" />
+<xi:include href="ch06_cygwin_related.xml" />
+<xi:include href="reference.xml" />
+
+</book>

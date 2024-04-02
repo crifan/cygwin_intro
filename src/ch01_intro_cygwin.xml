@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+<chapter    xml:id="intro_cygwin"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>Cygwin简介</title>
+<para></para>
+<para>相关旧帖：</para>
+<para></para>
+
+<sect1 xml:id="what_is_cygwin"><title>什么是Cygwin</title>
+    <para>Cygwin是一个集合，这个集合包含了一堆的工具，目的在于，在windows平台上，提供一个Linux的环境。</para>
+    <para>作为在Windows下面的软件，Cygwin中最核心的，是个dll库，叫做cygwin1.dll，</para>
+    <para>其提供了底层的Linux API的所有功能，供Cygwin下面的各种工具，模块等调用，以此来实现在Windows下模拟Linux环境。</para>
+    <para>从cygwin的具体表现和文件组成上来说，就是：核心的Cygwin DLL文件 + 各种Linux下面的模块（工具/软件/库）</para>
+    <para></para>
+</sect1>
+
+<sect1 xml:id="why_cygwin_comeout"><title>什么会出现Cygwin</title>
+    <para>计算机的世界，在操作系统方面，目前用的最广泛的，有三类：开源免费的Linux，微软的Windows，苹果的Mac。</para>
+    <para>随着计算机的发展，很多时候，尤其是做软件开发方面，常常会遇到在某种平台上，希望利用到另外一种平台上的工具，或环境，其中就包括在Windows下面，利用Linux中的环境和工具。</para>
+    <para>对于此种需求，最终才出现了各种方案，Cygwin就是其中的一种，提供了一个Windows下面使用Linux环境的平台。</para>
+    <para>有人会问了，不是很多功能，windows下面也有类似的软件可以实现吗？为何非要（在Windows环境下）去用Linux的环境（中的软件）呢？</para>
+    <para>那是因为，等你对Linux有更多了解的时候，就会发现，Linux下面的很多很多的更强大的功能，是windows下面没有对应的功能，或者即使有，也不好用。</para>
+    <para>比如Linux世界中，最常用的项目编译过程管理的工具makefile，Windows下面的就没有足够好用的类似的工具</para>
+    <para>而且一般与Makefile搭配使用的其他很多别的工具，使得组合起来使用，可以实现非常强大且复杂的一些功能。</para>
+    <para>随着软件开发的深入，至少我个人感觉，才能越加发现Linux的各种强大和好处。</para>
+    <para>所以才会遇到，不少时候，需要在Windows下去模拟Linux环境，以便去使用Linux中的各种强大功能的软件，工具的</para>
+    <tip xml:id="tip.about_win_linux_mac"><title>关于常见的系统Windows，Linux，Mac</title>
+        <para>对于常见的系统，Windows，Linux，Mac不熟悉的人，</para>
+        <para>可以去参考：</para>
+        <para><link xl:href="http://www.crifan.com/software_develop_basic_knowledge_os_type_windows_linux_mac_32bit_64bit/">【教程】软件开发基础知识之操作系统类型：Windows/Linux/Mac，32位/64位</link></para>
+    </tip>
+</sect1>
+
+<sect1 xml:id="who_need_cygwin"><title>什么人需要用到Cygwin</title>
+    <para>不论是做偏底层的嵌入式开发，还是做上层软件的开发，都可能会用到Cygwin。</para>
+    <para>简单说就是：</para>
+    <para>想要在Windows平台上，折腾Linux系统中的东西</para>
+    <para>然后才用到Cygwin去模拟Linux环境，去在Linux环境下实现各种复杂的功能和目标</para>
+    <para>此处，随便举一些例子：</para>
+    <sect2 xml:id="example_show_cygwin_usage"><title>举例说明Cygwin的各种用途</title>
+        <sect3 xml:id="dev_docbook_under_cygwin"><title>在Cygwin下建立Docbook开发环境</title>
+            <para>就像我之前写的教程中：</para>
+            <para><link xl:href="http://www.crifan.com/files/doc/docbook/docbook_dev_note/release/htmls/pure_win_docbook_dev_env.html">纯Windows环境下的Docbook开发环境的搭建</link></para>
+            <para>详细介绍的一样，对于Docbook环境的搭建，其实是可以使用Windows下的二进制的xsltproc+fop来实现的</para>
+            <para>但是，其总体上能够实现的功能相对较弱。</para>
+            <para>而我此处，有个相对比较复杂的需求：</para>
+            <para>需要管理20多个Docbook的book</para>
+            <para>如果编译每一个book，都需要手动去输入对应的编译命令的话，相关的工作量极大且极其繁琐，且容易出错，直接就把人累死了</para>
+            <para>而通过Cygwin中的makefile来实现，就相对轻松多了。</para>
+            <para>所以后来就去花点时间，去写了对应的makefile</para>
+            <para>以实现，对于每个book下的src文件夹下，去：</para>
+            <screen>
+make html
+make pdf
+make htmls
+make rtf
+make chm
+make txt
+            </screen>
+            <para>就可以对于每个book，生成其对应的不同格式的输出文件。</para>
+            <para>而在windows下面，类似的功能，我最多只能用batch批处理文件去实现，</para>
+            <para>但是却缺少了Makefile中的依赖特性，其可以自动检测所依赖的文件是否已更新，决定是否重新编译。</para>
+            <para>即，对于多个文件，尤其是中型大型等项目的管理方面，windows的batch，比linux中的makefile差的太远了。</para>
+            <para>另外，由于要生成chm等格式的文件，我此处还需要一些其他的辅助工具</para>
+            <para>比如用于转换编码的iconv，而这类好用易用的各种工具，在Linux下面，都是必备的，无需额外安装和太操心</para>
+            <para>但是如果想要在windows下使用，还要去一个个找到对应的windows下面的版本，或者找到相应的源码，自己去编译一个版本。</para>
+            <para>如此，经常需要利用到Linux下面的各种强大好用的工具，但是windows下面常常没有或者有类似的但不好用或功能很弱，</para>
+            <para>因此，才需要用到Cygwin去模拟Linux，</para>
+            <para>然后在Linux下面，利用已有的各种工具，实现各种复杂的需求的。</para>
+            <para>关于实现细节，可参考：</para>
+            <para><link xl:href="http://www.crifan.com/files/doc/docbook/docbook_dev_note/release/htmls/cygwin_docbook_dev_env.html">Windows环境下的，基于Cygwin的Docbook开发环境的搭建</link></para>
+        </sect3>
+    </sect2>
+</sect1>
+
+<sect1 xml:id="cygwin_version"><title>Cygwin的版本</title>
+    <para>cygwin的版本，涉及到两个东西。</para>
+    <para>一个是cygwin的核心==Cygwin DLL文件==cygwin1.dll，其最新版本，可以从<link xl:href="http://www.cygwin.com/">cygwin主页</link>上看到，此刻，2012-06-20，是1.7.15-1。</para>
+    <para>另外一个就是在线安装文件setup.exe的版本，其在安装过程中可以看到，比如<xref linkend="fg.cygwin_net_setup_program" />中的是2.774。</para>
+    <para>所以，如果你看到有人写的cygwin的版本是2.x的，那都是指的是setup.exe安装包的版本。如果写的是1.x.x的，那都是指的是核心的dll文件的版本。</para>
+</sect1>
+
+</chapter>

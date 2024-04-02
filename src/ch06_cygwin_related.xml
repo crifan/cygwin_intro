@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter    xml:id="cygwin_related"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>与Cygwin相关的东西</title>
+<para></para>
+<para></para>
+
+<sect1 xml:id="setup_docbook_under_cygwin"><title>在Cygwin下搭建Docbook开发环境</title>
+    <para>如之前教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/docbook_dev_note/release/htmls/cygwin_docbook_dev_env.html">Windows环境下的，基于Cygwin的Docbook开发环境的搭建</link></para>
+    <para>介绍的一样，其实是在Windows下的Cygwin中，去搭建Docbook的环境，</para>
+    <para>效果会比纯Windows环境下Docbook环境，更好，功能更强大，但是当然，也更加复杂。</para>
+    <para></para>
+</sect1>
+
+<sect1 xml:id="cygwin_build_crosstool_ng"><title>在Cygwin下编译crosstool-ng</title>
+    <para>crosstool-ng支持Cygwin环境，也可以在Cygwin下编译crosstool-ng：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/crosstool_ng/release/html/crosstool_ng.html#ctng_feature_linux_and_cygwin">支持多种主机编译环境：各种Linux发行版，Cygwin等</link></para>
+    <para></para>
+</sect1>
+
+<sect1 xml:id="cygwin_build_buildroot"><title>在Cygwin下编译Buildroot</title>
+    <para>Buildroot，截止目前（2013-09-03），官网是不支持Cygwin环境的</para>
+    <para>但是，经过一番研究后发现，现在最新版本的Buildroot，好像已经有人成功在Cygwin上编译了。</para>
+    <para>所以，后来自己也就去折腾了，感兴趣的可以去看看：</para>
+    <para><link xl:href="http://www.crifan.com/try_under_cygwin_compile_buildroot_for_xscale_arm_cross_toolchain_compiler/">【记录】在Cygwin上用Buildroot为xscale建立交叉工具链</link></para>
+    <para></para>
+</sect1>
+
+</chapter>
